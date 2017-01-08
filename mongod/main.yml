@@ -1,0 +1,30 @@
+---
+ - hosts: mongod
+   sudo: true
+   remote_user: ec2-user
+   gather_facts: true
+   tasks:
+
+    - name: add mongodb-org-3.4 repo file
+      template: src=repo.j2 dest=/etc/yum.repos.d/mongodb-org-3.4.repo
+      tags: mongodb
+
+    - name: Install mongodb-server
+      yum: name=mongodb-org-server state=present
+      tags: mongodb
+ 
+    - name: Install mongodb-shell
+      yum: name=mongodb-org-shell state=present
+      tags: mongodb
+  
+    - name: Install mongodb-tools
+      yum: name=mongodb-org-tools state=present
+      tags: mongodb
+
+    - name: configure mongodb
+      template: src=mongod.conf.j2 dest=/etc/mongod.conf
+      tags: mongodb
+
+    - name: run mongodb
+      service: name=mongod state=started enabled=yes
+      tags: mongodb

@@ -1,0 +1,32 @@
+---
+ - hosts: mongod
+   sudo: true
+   remote_user: ec2-user
+   gather_facts: true
+   tasks:
+
+    - name: Create LVM physical volume
+      command: pvcreate -y /dev/xvdb
+
+    - name: vgcreate
+      lvg:
+            vg: lvm-mongod-lab
+            pvs: /dev/sdb
+
+    - name: lvcreate
+      lvol:
+            vg: lvm-mongod-lab
+            lv: data
+            size: 39.9GB
+
+    - name: create file system
+      filesystem:
+            fstype: ext4
+            dev: /dev/lvm-mongod-lab/data
+
+    - name: mount logical volume
+      mount:
+            name: /data
+            src: /dev/lvm-mongod-lab/data
+            fstype: ext4
+            state: mounted

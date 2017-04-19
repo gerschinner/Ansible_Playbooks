@@ -1,0 +1,4 @@
+---
+users:
+  - username: hsvoboda
+    use_sudo: yes

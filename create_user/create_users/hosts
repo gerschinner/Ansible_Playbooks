@@ -1,0 +1,24 @@
+[aws_instances]
+aws_instance_1 	ansible_host='10.1.28.180' ansible_user='ubuntu' ansible_ssh_private_key_file='/home/ubuntu/.ssh/jwt-dcc-dev-webapp.pem'
+aws_instance_2 	ansible_host='10.1.51.105' ansible_user='ubuntu' ansible_ssh_private_key_file='/home/ubuntu/.ssh/jwt-dcc-dev-webapp.pem'
+
+[localhost]
+localhost       ansible_connection=local
+
+[vagrant_python2]
+vagrant_1       ansible_host='172.28.128.4' ansible_ssh_user='vagrant' ansible_ssh_private_key_file='/home/delivery/vagrant_projects/Vagrant_Multi-OS-Ubu-Cent/.vagrant/machines/centos7/virtualbox/private_key'
+vagrant_2       ansible_host='172.28.128.3' ansible_ssh_user='vagrant' ansible_ssh_private_key_file='/home/delivery/vagrant_projects/Vagrant_Multi-OS-Ubu-Cent/.vagrant/machines/ubutrusty/virtualbox/private_key'
+[vagrant_python2:vars]
+ansible_python_interpreter=/usr/bin/python2.7
+
+[vagrant_python3]
+vagrant_3       ansible_host='172.28.128.5' ansible_ssh_user='ubuntu' ansible_ssh_private_key_file='/home/delivery/vagrant_projects/Vagrant_Multi-OS-Ubu-Cent/.vagrant/machines/ubuxenial/virtualbox/private_key'
+[vagrant_python3:vars]
+ansible_python_interpreter=/usr/bin/python3
+
+[connect]
+172.17.2.35
+172.17.2.37
+172.17.2.40
+172.17.2.30
+172.17.10.128

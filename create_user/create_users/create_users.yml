@@ -1,0 +1,60 @@
+---
+- hosts:
+    - vagrant_python2
+    - vagrant_python3
+  become: yes
+  gather_facts: true
+
+  pre_tasks:
+    - name: Install Debian based distros prerequisites
+      apt: pkg="{{ item }}" update_cache=yes cache_valid_time=86400 state=present
+      with_items:
+        - git
+        - python2.7
+        - python-dev
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+    - name: Install Debian based distros prerequisites
+      yum: name="{{ item }}" state=present update_cache=yes
+      with_items:
+        - git
+        - python
+        - python-devel
+      when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+
+  tasks:
+  - include_vars: users.yml
+
+  - name: Add users | create users, shell, home dirs
+    user: name={{ item.username }} shell=/bin/bash createhome=yes comment='create with ansible'
+    with_items: '{{users}}'
+
+  - name: Setup | authorized key upload
+    authorized_key: user={{ item.username }}
+      key="{{ lookup('file', 'pub_keys/{{ item.username }}.pub') }}"
+    with_items: '{{users}}'
+
+  - name: Check that the sudo_users file exists
+    stat:
+      path: /etc/sudoers.d/sudo_users
+    register: stat_result
+
+  - name: If sudo_users file does no exists crete it
+    file:
+      path: /etc/sudoers.d/sudo_users
+      state: touch
+      mode: 0644
+    when: stat_result.stat.exists == False
+
+  - name: Sudoers | update /etc/sudoers.d/sudo_users file and validate
+    lineinfile: "dest=/etc/sudoers.d/sudo_users
+      insertafter=EOF
+      line='{{ item.username }} ALL=(ALL) NOPASSWD: ALL'
+      regexp='^{{ item.username }} .*'
+      state=present"
+    when: '{{ item.use_sudo }} == True'
+    with_items: '{{users}}'
+
+
+
+

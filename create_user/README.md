@@ -2,7 +2,7 @@
 
 Create on each server (file hosts) users from the list (file users.yml).
 
-![ansible-create-users](https://github.com/msergiy87/ansible-create-users/blob/master/ansible-create-users.jpg)
+![ansible-create-users](https://bytebucket.org/grydev/ansible/raw/c963f117c21f5786c3b1a308fd37e20c7da83a4e/user_mgmt/ansible-create-users.jpg?token=ea6bdac2f2bc1b1afaa6967b3b6c37effa244574)
 
 User Settings
 ------------

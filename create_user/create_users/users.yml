@@ -1,0 +1,33 @@
+---
+users:
+  - username: ebarrirero
+    use_sudo: True
+  - username: dojeda
+    use_sudo: True
+  - username: aamengual
+    use_sudo: True
+  - username: hsvoboda
+    use_sudo: False
+  - username: ngonzalez
+    use_sudo: False
+  - username: aromero
+    use_sudo: False
+  - username: ezadok
+    use_sudo: True
+
+
+# Validate USERS to be deleted:
+# ntorres:x:1001:1001:Nicolas Torres:/home/ntorres:/bin/bash
+# mblanco:x:1006:1006:Marcelo Blanco:/home/mblanco:/bin/bash
+# momara:x:1008:1008:Moemen Omara:/home/momara:/bin/bash
+# jnogueira:x:1010:1010:Juan Nogueira:/home/jnogueira:/bin/bash
+# dlangenberg:x:1011:1011:David Langenberg:/home/dlangenberg:/bin/bash
+# jquintero:x:2012:2012::/home/jquintero:/bin/bash
+# mcigorraga:x:3011:3011:Martin Cigorraga:/home/mcigorraga:/bin/bash
+# hreyes:x:3012:3012::/home/hreyes:/bin/bash
+# crivas:x:3015:3015::/home/crivas:/bin/bash
+# mgamero:x:3016:3016::/home/mgamero:/bin/bash
+# cdelrio:x:3021:3021::/home/cdelrio:/bin/bash
+# framos:x:3022:3022::/home/framos:/bin/bash
+# frodriguez:x:3025:3025::/home/frodriguez:/bin/bash
+# msosa:x:3019:3019::/home/msosa:/bin/bash
